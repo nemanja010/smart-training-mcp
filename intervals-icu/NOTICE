@@ -1,0 +1,51 @@
+intervals-icu MCP Server and Skill
+Copyright (C) 2026 Nemanja Manic
+
+This project incorporates and extends the following works:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+intervals-mcp-server
+Copyright (C) Marc Vilanova
+Source:  https://github.com/mvilanova/intervals-mcp-server
+License: GNU General Public License v3.0 (GPL-3.0-only)
+
+This project is a derivative work of intervals-mcp-server. The following
+modules are based directly on that upstream codebase:
+
+  src/intervals_mcp_server/api/client.py
+  src/intervals_mcp_server/config.py
+  src/intervals_mcp_server/mcp_instance.py
+  src/intervals_mcp_server/server.py
+  src/intervals_mcp_server/server_setup.py
+  src/intervals_mcp_server/tools/activities.py   (extended)
+  src/intervals_mcp_server/tools/custom_items.py
+  src/intervals_mcp_server/tools/events.py       (extended)
+  src/intervals_mcp_server/tools/power_curves.py
+  src/intervals_mcp_server/tools/wellness.py     (extended)
+  src/intervals_mcp_server/utils/dates.py
+  src/intervals_mcp_server/utils/formatting.py   (extended)
+  src/intervals_mcp_server/utils/types.py
+  src/intervals_mcp_server/utils/validation.py
+
+Because the upstream project is licensed under GPL-3.0-only, this
+derivative work is also distributed under GPL-3.0-only. See LICENSE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+intervals-icu skill references
+  https://github.com/disco-trooper/skills/tree/main/intervals-icu  (MIT)
+  https://github.com/vm0-ai/vm0-skills/tree/main/intervals-icu     (license unknown)
+
+These repositories were consulted for research and reference during
+development of skill/SKILL.md. No code or text was copied from them.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+New code and content in this repository (files not derived from the above):
+
+  src/intervals_mcp_server/tools/fitness.py
+  skill/SKILL.md
+
+These are original works by Nemanja Manic, distributed under
+GPL-3.0-only as part of this combined work.

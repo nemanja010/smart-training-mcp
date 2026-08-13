@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+uv.lock
+
+# User workspace (personal files stay here, repo stays clean)
+workspace/*
+!workspace/README.md

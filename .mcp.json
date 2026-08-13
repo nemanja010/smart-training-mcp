@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "intervals-icu": {
+      "command": "intervals-mcp",
+      "env": {
+        "API_KEY": "${API_KEY}",
+        "ATHLETE_ID": "${ATHLETE_ID}"
+      }
+    }
+  }
+}

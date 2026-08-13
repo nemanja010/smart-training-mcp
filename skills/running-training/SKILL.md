@@ -478,6 +478,7 @@ When the athlete mentions their morning metrics (HRV, weight, sleep), **offer to
 | Periodization, block structure, annual plan | `references/periodization.md` |
 | Training methodologies detail | `references/methodologies.md` |
 | Physiology (VO2max, LT, running economy) | `references/physiology.md` |
+| VO2max training — dose-response, durability, plateau | `references/vo2max-training.md` |
 | Race-specific plans (5K → ultra) | `references/race-specific.md` |
 | Nutrition and recovery | `references/nutrition-recovery.md` |
 | Injuries — prevention and management | `references/injuries.md` |

@@ -69,6 +69,24 @@ If the command is not found, activate the virtual environment before starting th
 
 The Intervals.icu coaching guidance lives at `skills/intervals-icu/SKILL.md` (see the repo root). The root install scripts link it, along with the running, cycling, strength, nutrition, assessment, and programming skills, into `~/.agents/skills/`.
 
+## Starter Prompts
+
+The server exposes guided MCP prompts for common workflows, including:
+
+- `set_up_training_profile` — onboard a new athlete and collect personal context
+- `get_training_baseline` — summarize current fitness, load, and recovery
+- `analyze_last_week` — compare planned and completed training
+- `assess_readiness` — decide between a hard, easy, or rest day
+- `review_training_load` — inspect load progression over a selected period
+- `analyze_key_workout` — review race or workout execution
+- `build_training_week` — design a week without writing to the calendar
+- `prepare_for_race` — create a race-preparation outline
+- `coordinate_strength_and_endurance` — coordinate concurrent training
+- `create_calendar_workout` — format a workout and request confirmation before writing
+- `import_wellness_data` — validate a wellness import before saving
+
+Write-oriented prompts explicitly require athlete confirmation before changing Intervals.icu data.
+
 ## Environment Variables
 
 | Variable | Required | Description |

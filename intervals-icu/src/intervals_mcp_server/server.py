@@ -9,6 +9,7 @@ import logging
 from intervals_mcp_server.config import get_config
 from intervals_mcp_server.mcp_instance import mcp
 from intervals_mcp_server.server_setup import setup_transport, start_server
+import intervals_mcp_server.prompts as _prompts  # noqa: F401  # register MCP prompts
 from intervals_mcp_server.tools import (
     # Activities
     add_activity_message,

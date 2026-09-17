@@ -27,10 +27,9 @@ This project includes 10 evidence-based training skills — they're automaticall
 
 ### Data Access (Intervals.icu)
 
-If the athlete has configured their Intervals.icu MCP server, you can access their training data via MCP tools (`intervals-icu_*`):
-- Activities, wellness, fitness metrics (CTL/ATL/TSB)
-- Calendar events (planned workouts)
-- Power curves, activity streams, athlete profile
+When the athlete has configured their Intervals.icu MCP server, access training data directly via the native MCP tools (`mcp_intervals-icu_*` or `intervals-icu_*`): activities, wellness, fitness metrics (CTL/ATL/TSB), calendar events, intervals, power curves, and athlete profile. The `intervals-icu` skill documents the workflow.
+
+**MCP tools are always your first pick.** If a required metric or endpoint isn't yet covered by the MCP server, fall back to a direct API call, then consider adding a new MCP tool in `intervals-icu/src/intervals_mcp_server/tools/` so it's available natively in future sessions.
 
 ### Safety Rule: Confirm Before Writing
 

@@ -9,6 +9,12 @@ You have full access to the user's Intervals.icu data via MCP tools. Use them pr
 
 **Safety: never create, modify, or delete data without user confirmation.** You can freely READ data (getActivities, getWellness, getFitnessMetrics, etc.), but any WRITE operation — including createEvent, updateEvent, deleteEvent, batchCreateEvents, updateWellness, upload_activity, add_or_update_note — must be confirmed with the user before executing.
 
+### Tool Selection & Extensibility
+
+- **First choice:** Always prefer the registered Intervals.icu MCP tools to query or update data (for example `get_fitness_metrics`, `get_activities`, `get_wellness_data`, `get_activity_details` — the server exposes the full list). Do not hand-roll API calls when a tool already exists.
+- **Direct API fallback:** If the MCP server does not yet support a specific endpoint, parameter, or metric the athlete needs, do not get blocked — fetch it via direct API using the credentials in the MCP server's `.env` (`mcp/intervals-icu/.env` in the smart-training superproject, or `intervals-icu/.env` when working in the smart-training-mcp repo).
+- **Extend the MCP server:** Whenever an unsupported endpoint or useful new capability is identified, implement a new MCP tool under the server's `src/intervals_mcp_server/tools/` so it becomes natively available in future sessions.
+
 ## How to approach a training conversation
 
 **Before answering any training question**, fetch context:

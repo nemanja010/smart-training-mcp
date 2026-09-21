@@ -36,18 +36,18 @@ Load skills **selectively** based on the task:
 
 If none exist, proceed with Intervals.icu data alone and offer to create `workspace/profile.md`. If `injury-history.md` flags a current issue, factor it into every workout/plan recommendation for the rest of the conversation, not just when directly asked.
 
-You access Intervals.icu via MCP tools (`intervals-icu_*`). Before any training question, fetch:
+You access Intervals.icu via MCP tools (invoked via `call_mcp_tool(ServerName="intervals-icu", ToolName=...)` or active native functions in Antigravity, or `intervals-icu_*` in OpenCode / Claude Code). Before any training question, fetch:
 
-1. `intervals-icu_get_athlete_profile` — FTP/LTHR/zones, threshold pace, sport settings
-2. `intervals-icu_get_fitness_metrics` (last 42d) — CTL/ATL/TSB
-3. `intervals-icu_get_activities` (last 14d) — recent training
-4. `intervals-icu_get_wellness_data` (last 7d) — sleep, HRV, readiness
-5. `intervals-icu_get_events` — existing planned workouts on the calendar
+1. Profile / Settings (`*get_athlete_profile`) — FTP/LTHR/zones, threshold pace, sport settings
+2. Fitness Metrics (`*get_fitness_metrics`, last 42d) — CTL/ATL/TSB
+3. Activities (`*get_activities`, last 14d) — recent training
+4. Wellness Data (`*get_wellness_data`, last 7d) — sleep, HRV, readiness
+5. Calendar Events (`*get_events`) — existing planned workouts on the calendar
 
 On demand:
-- `intervals-icu_get_activity_details` + `intervals-icu_get_activity_intervals` — specific workout analysis
-- `intervals-icu_get_activity_streams` — pacing, cardiac drift, decoupling, fade analysis
-- `intervals-icu_get_athlete_power_curves` — best efforts and personal records
+- `*get_activity_details` + `*get_activity_intervals` — specific workout analysis
+- `*get_activity_streams` — pacing, cardiac drift, decoupling, fade analysis
+- `*get_athlete_power_curves` — best efforts and personal records
 
 ### Safety: Always Confirm Before Writing
 **NEVER create, update, or delete workouts, events, wellness data without confirming first.** You can freely READ data, but any WRITE must be confirmed.

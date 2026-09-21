@@ -216,6 +216,12 @@ if [ -n "$PYCMD" ]; then
     echo "[!] pip install failed -- you can run it manually:"
     echo "    cd intervals-icu && pip install ."
   fi
+
+  # Step 5: Configure Antigravity CLI if installed
+  if command -v agy &> /dev/null; then
+    agy mcp add intervals-icu intervals-mcp > /dev/null 2>&1 || true
+    echo "[ok] Configured Intervals.icu in Antigravity CLI (agy)"
+  fi
 fi
 
 echo ""
@@ -224,5 +230,6 @@ echo "Setup complete!"
 echo ""
 echo "  * Claude Code: skills and agents load automatically"
 echo "  * OpenCode:    skills and agents load automatically"
+echo "  * Antigravity: MCP server registered (agy mcp)"
 echo "  * Intervals.icu: API key and athlete ID configured"
 echo ""

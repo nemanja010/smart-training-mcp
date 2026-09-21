@@ -214,6 +214,17 @@ if ($null -ne $pythonCmd) {
         Write-Host "    cd intervals-icu; pip install ." -ForegroundColor Yellow
     }
     Pop-Location
+
+    # Step 5: Configure Antigravity CLI if installed
+    $agyCmd = Get-Command agy -ErrorAction SilentlyContinue
+    if ($null -ne $agyCmd) {
+        try {
+            & agy mcp add intervals-icu intervals-mcp 2>&1 | Out-Null
+            Write-Host "[ok] Configured Intervals.icu in Antigravity CLI (agy)" -ForegroundColor Green
+        } catch {
+            Write-Verbose "Could not configure agy: $_"
+        }
+    }
 }
 
 Write-Host ""
@@ -222,5 +233,6 @@ Write-Host "Setup complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "  * Claude Code: skills and agents load automatically" -ForegroundColor Gray
 Write-Host "  * OpenCode:    skills and agents load automatically" -ForegroundColor Gray
+Write-Host "  * Antigravity: MCP server registered (agy mcp)" -ForegroundColor Gray
 Write-Host "  * Intervals.icu: API key and athlete ID configured" -ForegroundColor Gray
 Write-Host ""

@@ -5,6 +5,8 @@ This module initializes and runs the MCP server.
 """
 
 import logging
+import signal
+import sys
 
 from intervals_mcp_server.config import get_config
 from intervals_mcp_server.mcp_instance import mcp
@@ -54,8 +56,50 @@ logging.basicConfig(
 logger = logging.getLogger("intervals_icu_mcp_server")
 
 
+def _signal_handler(signum, frame):
+    """Clean exit on termination signals."""
+    sys.exit(0)
+
+
+_win_handler_ref = None
+
+
+def _register_shutdown_handlers():
+    """Register graceful termination handlers for clean process exit on all platforms."""
+    global _win_handler_ref
+    try:
+        signal.signal(signal.SIGINT, _signal_handler)
+        signal.signal(signal.SIGTERM, _signal_handler)
+        if hasattr(signal, "SIGBREAK"):
+            signal.signal(signal.SIGBREAK, _signal_handler)
+    except (ValueError, AttributeError):
+        pass
+
+    if sys.platform == "win32":
+        try:
+            import ctypes
+            from ctypes import wintypes
+
+            _handler_type = ctypes.WINFUNCTYPE(wintypes.BOOL, wintypes.DWORD)
+
+            def _win_ctrl_handler(ctrl_type):
+                # Intercept all Windows console termination events and exit 0
+                try:
+                    ctypes.windll.kernel32.ExitProcess(0)
+                except Exception:
+                    sys.exit(0)
+                return True
+
+            _win_handler_ref = _handler_type(_win_ctrl_handler)
+            ctypes.windll.kernel32.SetConsoleCtrlHandler(_win_handler_ref, True)
+        except Exception:
+            pass
+
+
 def main():
     """Main entry point for the Intervals.icu MCP server."""
+    _register_shutdown_handlers()
+
     config = get_config()
 
     if not config.athlete_id:
@@ -65,8 +109,18 @@ def main():
 
     transport = setup_transport()
     logger.info("Starting Intervals.icu MCP server")
-    start_server(mcp, transport)
+    try:
+        start_server(mcp, transport)
+    except (KeyboardInterrupt, SystemExit, BrokenPipeError, EOFError):
+        sys.exit(0)
+    except BaseException as exc:
+        logger.info("Server stopped: %s", exc)
+        sys.exit(0)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException:
+        sys.exit(0)
+

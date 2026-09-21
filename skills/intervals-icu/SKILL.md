@@ -11,8 +11,9 @@ You have full access to the user's Intervals.icu data via MCP tools. Use them pr
 
 ### Tool Selection & Extensibility
 
-- **First choice:** Always prefer the registered Intervals.icu MCP tools to query or update data (for example `get_fitness_metrics`, `get_activities`, `get_wellness_data`, `get_activity_details` — the server exposes the full list). Do not hand-roll API calls when a tool already exists.
-- **Direct API fallback:** If the MCP server does not yet support a specific endpoint, parameter, or metric the athlete needs, do not get blocked — fetch it via direct API using the credentials in the MCP server's `.env` (`mcp/intervals-icu/.env` in the smart-training superproject, or `intervals-icu/.env` when working in the smart-training-mcp repo).
+- **Dynamic Tool Discovery:** Do not assume a fixed prefix or static list of tool names across different environments. In Antigravity CLI, tools are listed under `<mcp_servers>` for `intervals-icu` and called via `call_mcp_tool(ServerName="intervals-icu", ToolName=...)` (or as native `mcp_intervals-icu_*` functions). In Claude Code / OpenCode, tools use the `intervals-icu_*` prefix. Always check `<mcp_servers>` or active tool declarations to discover the tools available in the current session.
+- **First choice (MCP Tools):** Always use the active Intervals.icu MCP tools to query or update data whenever available. Adhere to the declared schema and provide any required environment metadata (such as `toolAction` and `toolSummary`).
+- **Direct API fallback (Gaps only):** Direct API calls (using credentials in the MCP server's `.env`) are strictly reserved for endpoints, parameters, or metrics genuinely not yet supported by the MCP server. Never use direct API calls as a substitute for an active MCP tool.
 - **Extend the MCP server:** Whenever an unsupported endpoint or useful new capability is identified, implement a new MCP tool under the server's `src/intervals_mcp_server/tools/` so it becomes natively available in future sessions.
 
 ## How to approach a training conversation
@@ -23,6 +24,21 @@ You have full access to the user's Intervals.icu data via MCP tools. Use them pr
 3. `get_wellness_data` (last 7 days) — HRV, sleep, resting HR, subjective scores
 
 With those three, you can answer almost anything intelligently.
+
+### Predefined Coaching Workflows & Commands
+These triggers correspond to the MCP prompt templates defined in `prompts.py`. Execute them whether invoked via `/slash_command` or natural language:
+- `/set_up_training_profile`: Guide onboarding questions one by one, then save summary to `workspace/profile.md` & `workspace/injury-history.md`.
+- `/get_training_baseline`: Provide concise baseline covering fitness, recent load, strengths/weaknesses, and 3 actionable next steps.
+- `/explain_training_data`: Explain CTL/ATL/TSB, zones, and metrics in plain English.
+- `/analyze_last_week`: Compare planned vs actual, volume/intensity by sport, fatigue, and recommend adjustments.
+- `/assess_readiness`: Check HRV, sleep, RHR, CTL/ATL/TSB; give Hard, Easy, and Rest options.
+- `/review_training_load [period]`: Check ramp rate, ACWR, load progression, and recovery balance over period.
+- `/analyze_key_workout [activity]`: Deep dive into pacing, HR response, decoupling, and interval consistency.
+- `/build_training_week [date_range]`: Propose 7-day schedule with workouts and rationale; confirm before calendar write.
+- `/prepare_for_race [event]`: Build structured race preparation plan with build, peak, and taper phases.
+- `/coordinate_strength_and_endurance`: Schedule lifting around endurance sessions to minimize interference.
+- `/create_calendar_workout [date] [workout]`: Generate workout using single-metric workout-builder syntax.
+- `/import_wellness_data [date_range]`: Validate and backfill wellness data with confirmation.
 
 ---
 

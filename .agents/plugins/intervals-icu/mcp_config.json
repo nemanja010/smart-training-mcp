@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "intervals-icu": {
+      "command": "intervals-mcp",
+      "args": []
+    }
+  }
+}

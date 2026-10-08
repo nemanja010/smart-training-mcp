@@ -15,3 +15,19 @@ uv.lock
 # User workspace (personal files stay here, repo stays clean)
 workspace/*
 !workspace/README.md
+
+# Antigravity project-level customizations.
+# .agents/skills/* are links into skills/; regenerate with install.ps1 / install.sh.
+# .agents/plugins/ is checked in (plugin.json + mcp_config.json must be tracked).
+.agents/skills.json
+.agents/skills/running-training/
+.agents/skills/intervals-icu/
+.agents/skills/cycling-training/
+.agents/skills/hypertrophy-training/
+.agents/skills/schoenfeld-hypertrophy/
+.agents/skills/sbs-training/
+.agents/skills/rp-training/
+.agents/skills/rp-diet/
+.agents/skills/program-creation/
+.agents/skills/assessment/
+.agents/skills/paper-research/

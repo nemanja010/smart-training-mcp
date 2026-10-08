@@ -9,6 +9,18 @@
         "ATHLETE_ID": "{env:ATHLETE_ID}"
       },
       "enabled": true
+    },
+    "paper-search": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "paper-search-mcp",
+        "--with",
+        "mcp<2",
+        "paper-search-mcp"
+      ],
+      "enabled": true
     }
   }
 }

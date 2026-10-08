@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "paper-search": {
+      "command": "uvx",
+      "args": ["--from", "paper-search-mcp", "--with", "mcp<2", "paper-search-mcp"]
+    }
+  }
+}

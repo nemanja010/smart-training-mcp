@@ -6,6 +6,16 @@
         "API_KEY": "${API_KEY}",
         "ATHLETE_ID": "${ATHLETE_ID}"
       }
+    },
+    "paper-search": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "paper-search-mcp",
+        "--with",
+        "mcp<2",
+        "paper-search-mcp"
+      ]
     }
   }
 }

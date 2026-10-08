@@ -29,6 +29,23 @@ These are developed in this repository and are not pulled from anywhere:
 
 - `skills/running-training` — running coaching skill
 - `skills/intervals-icu` — Intervals.icu coaching skill (pairs with the MCP server in `intervals-icu/`)
+- `skills/paper-research` — literature retrieval and evidence-to-skill synthesis skill (pairs with the `paper-search` MCP server)
+
+## External MCP servers (not vendored)
+
+| Server | Upstream | Install | License |
+|---|---|---|---|
+| `paper-search-mcp` | [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp) | `uvx --from paper-search-mcp --with "mcp<2" paper-search-mcp` | MIT |
+
+It is launched on demand via `uvx` rather than vendored, so there is no pinned commit to sync. Pin the
+upstream version with `--from "paper-search-mcp==<version>"` if you need reproducibility.
+
+> [!IMPORTANT]
+> The `--with "mcp<2"` pin is **required**. The published `paper-search-mcp` leaves the `mcp` dependency
+> unconstrained, and `mcp` 2.x removed `mcp.server.fastmcp`, which the server imports at startup. Without the
+> pin the server exits with `ModuleNotFoundError: No module named 'mcp.server.fastmcp'`. The upstream `main`
+> branch has since added `mcp[cli]>=1.27.2,<2` to its own `pyproject.toml`; the pin keeps the released version
+> working and can be dropped once a release carries it.
 
 ## How to update a vendored skill
 

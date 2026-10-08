@@ -86,6 +86,31 @@ Update it as things change — resolved issues, new niggles, cleared restriction
 
 Drop any medical or health documentation here — bloodwork, PT/physio notes, sports-medicine assessments, DEXA scans, VO2max test results. Agents will read relevant files here before analyzing training or building a plan, e.g. to factor in an iron deficiency flagged in bloodwork, or a physio's return-to-run protocol after an injury.
 
+## Research — `research/`
+
+If the `paper-search` MCP server is set up, agents can search academic literature and turn it into coaching
+knowledge. Create this folder when you first ask a research question — the agent will make it for you.
+
+```
+workspace/research/
+├── papers/           # downloaded PDFs and extracted text
+├── notes/            # claim tables (population, design, effect size, caveats)
+└── skills-drafts/    # synthesized skills, yours to approve before promotion
+```
+
+Ask things like:
+
+```text
+Find research on taper length before a marathon.
+What does the literature actually say about lifting twice a week while running?
+Summarize recent studies on HRV-guided training.
+Turn what you find about altitude training into a skill.
+```
+
+Everything lands here rather than in the repo, so you can review it freely and `git pull` will never conflict.
+When a synthesized skill is worth keeping permanently, the agent moves it into `skills/` and records the
+sources in that skill's `SOURCES.md`.
+
 ## Adding more context
 
 You can add any other files to `workspace/` that help agents understand you better:

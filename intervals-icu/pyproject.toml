@@ -13,11 +13,14 @@ dependencies = [
   "mcp[cli]>=1.4.0",
   "httpx>=0.25.0",
   "python-dotenv>=1.0.0",
+  "fastapi>=0.111.0",
+  "uvicorn[standard]>=0.29.0",
 ]
 keywords = ["intervals", "cycling", "running", "training", "mcp", "ai", "coaching"]
 
 [project.scripts]
 intervals-mcp = "intervals_mcp_server.server:main"
+intervals-web = "intervals_mcp_server.web_server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/intervals_mcp_server"]
